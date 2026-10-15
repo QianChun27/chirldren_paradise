@@ -1,0 +1,19 @@
+{
+  "name": "@paradise/api-client",
+  "version": "1.0.0",
+  "description": "儿童学习乐园 统一请求层 + 类型化 backend API 客户端（JWT 注入、401/403 拦截、公共内容拉取）",
+  "type": "module",
+  "main": "dist/api-client.js",
+  "module": "dist/api-client.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "axios": "^1.7.2"
+  },
+  "dependencies": {
+    "@paradise/utils": "^1.0.0"
+  }
+}

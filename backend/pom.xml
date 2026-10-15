@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ 儿童学习乐园 · 后端工程（Maven 多模块聚合根）
+  ~
+  ~ 职责：作为聚合/父 POM，统一「包版本管理」：
+  ~   1) <properties> 集中所有版本号（单一事实来源）；
+  ~   2) <dependencyManagement> 通过 import 引入 backend-bom，对全部第三方依赖版本收敛；
+  ~   3) <pluginManagement> 统一构建插件版本与配置；
+  ~   4) <modules> 声明子模块，构建顺序由 Maven reactor 决定。
+  ~
+  ~ 各子模块只需 <parent> 指向本 POM，禁止在子模块中重复声明依赖版本。
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.paradise</groupId>
+    <artifactId>backend-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>paradise-backend-parent</name>
+    <description>儿童学习乐园 后端工程父 POM（包版本统一管理）</description>
+
+    <!-- 子模块：bom 必须在其它模块之前构建（被 dependencyManagement import） -->
+    <modules>
+        <module>backend-bom</module>
+        <module>backend-common</module>
+        <module>backend-auth</module>
+        <module>backend-resource</module>
+        <module>backend-storage</module>
+        <module>backend-server</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>21</java.version>
+        <maven.compiler.release>21</maven.compiler.release>
+
+        <!-- ===== 内部模块版本（reactor 内由父 POM 统一，子模块无需写 version） ===== -->
+
+        <!-- ===== 第三方依赖版本（仅此处声明，子模块引用时不写版本） ===== -->
+        <spring-boot.version>3.2.5</spring-boot.version>
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <hutool.version>5.8.32</hutool.version>
+        <lombok.version>1.18.34</lombok.version>
+        <mysql-connector.version>8.3.0</mysql-connector.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
+        <tencent-cos.version>5.6.227</tencent-cos.version>
+        <minio.version>8.5.7</minio.version>
+        <jackson.version>2.17.0</jackson.version>
+        <jjwt.version>0.12.5</jjwt.version>
+        <springdoc.version>2.5.0</springdoc.version>
+
+        <!-- 测试 -->
+        <junit.version>5.10.2</junit.version>
+        <mockito.version>5.11.0</mockito.version>
+    </properties>
+
+    <!-- 统一依赖版本：import backend-bom（本工程自维护的 BOM） -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.paradise</groupId>
+                <artifactId>backend-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 统一插件版本与基础配置 -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <release>${java.version}</release>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.4.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

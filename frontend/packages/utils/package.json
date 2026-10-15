@@ -1,0 +1,13 @@
+{
+  "name": "@paradise/utils",
+  "version": "1.0.0",
+  "description": "儿童学习乐园 通用工具库：日期/音频/存储/格式化等跨端复用工具",
+  "type": "module",
+  "main": "dist/utils.js",
+  "module": "dist/utils.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "vite build"
+  }
+}

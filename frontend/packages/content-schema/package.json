@@ -1,0 +1,13 @@
+{
+  "name": "@paradise/content-schema",
+  "version": "1.0.0",
+  "description": "儿童学习乐园 共享内容 Schema：五大内容库 TS 类型 + 前后端契约（与 backend 接口一致）",
+  "type": "module",
+  "main": "dist/content-schema.js",
+  "module": "dist/content-schema.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "vite build"
+  }
+}

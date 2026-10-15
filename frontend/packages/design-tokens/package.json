@@ -1,0 +1,17 @@
+{
+  "name": "@paradise/design-tokens",
+  "version": "1.0.0",
+  "description": "儿童学习乐园 共享设计令牌：糖果橙/森林绿/星空蓝 主题变量 + ZCOOL KuaiLe 童趣字体（与 ui-kit 同源）",
+  "type": "module",
+  "main": "dist/index.css",
+  "module": "dist/index.css",
+  "style": "dist/index.css",
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.4.6"
+  }
+}

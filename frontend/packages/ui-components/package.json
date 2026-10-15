@@ -1,0 +1,21 @@
+{
+  "name": "@paradise/ui-components",
+  "version": "1.0.0",
+  "description": "儿童学习乐园 共享组件库：PC(Element Plus 封装) 与移动端(Vant/自建) 通用组件 + 主题切换",
+  "type": "module",
+  "main": "dist/ui-components.js",
+  "module": "dist/ui-components.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.38",
+    "element-plus": "^2.7.6",
+    "vant": "^4.9.0"
+  },
+  "dependencies": {
+    "@paradise/design-tokens": "^1.0.0"
+  }
+}
